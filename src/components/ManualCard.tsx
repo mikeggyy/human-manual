@@ -25,6 +25,7 @@ export function ManualCard({ result, compact = false, afterIntro }: { result: Re
       {compact ? <blockquote>{result.quote}</blockquote> : <p className="description">{result.description}</p>}
     </div>
     {afterIntro}
+    {!compact && <h2 id="basics-title" className="manual-basics-title" tabIndex={-1}>這份角色的基本設定</h2>}
     <dl className="manual-sections">
       {(compact ? sections.slice(0, 3) : sections).map(({ key, label, icon }) => <div className="manual-section" key={key}>
         <div className="section-icon"><Icon name={icon} /></div>

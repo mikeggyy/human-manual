@@ -12,7 +12,7 @@ GitHub Pages 是靜態託管服務；GitHub Free 可用公開 repository 啟用 
 使用者於 2026-09-07 明確授權建立 mikeggyy/human-manual 公開 repository 並啟用 GitHub Pages。
 Repository 已建立：https://github.com/mikeggyy/human-manual 。Pages 使用 GitHub Actions，HTTPS 已啟用。
 後續更新 main 會自動檢查、建置及發布；應確認 Actions 成功並驗收公開網站，不能以 push 成功代替部署成功。
-目前可先公開為試玩版：可完整作答、查看六角色結果及分享連結；localStorage 保存、PNG 儲存、原生分享尚未實作。
+目前為試玩版：可完整作答、保存與恢復進度、查看六角色結果、產生 PNG 及分享連結；原生分享只在瀏覽器支援時顯示。實際驗證與部署紀錄見 IMPLEMENTATION-PLAN.md。
 未選定授權前不要擅自加入 MIT／Apache 等 LICENSE。
 
 ## 1. 在本機完成與驗證
@@ -34,7 +34,7 @@ Repository 的 Settings → Pages → Build and deployment → Source 選 GitHub
 對帳號首頁站或自訂網域，base 通常為 '/'，需按實際部署設定調整。[4]
 範本預設一般專案站，使用 repository 名稱產生 VITE_BASE_PATH；改成首頁站或自訂網域時要覆寫成 '/'。
 Vite 設定可採 deployment-templates/vite.config.ts；不是直接取代已有設定，應保留 alias 等既有選項。
-部署後依 Actions 真正回報的 Pages URL，逐一驗證首頁、做測驗、結果直達、reload、分享。PNG 與原生分享須等功能完成後另行驗收。
+部署後依 Actions 真正回報的 Pages URL，逐一驗證首頁、做測驗、結果直達、reload、分享和 PNG 下載。原生分享自動測試的可用／取消情境不能替代手機系統分享面板的實機驗收。
 發佈成功後才把真實 Live Demo 和 GitHub URL 加入 README 與網站。
 
 ## 分享預覽的範圍

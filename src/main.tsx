@@ -6,5 +6,6 @@ import './styles/index.css'
 import './styles/illustrated.css'
 import './styles/result-chapters.css'
 import './styles/collectible.css'
+import './styles/experience.css'
 
 createRoot(document.getElementById('root')!).render(<StrictMode><ErrorBoundary><App /></ErrorBoundary></StrictMode>)

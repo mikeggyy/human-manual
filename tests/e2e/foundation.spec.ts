@@ -6,7 +6,7 @@ import { scoreQuiz } from '../../src/domain/score'
 import { resultStories } from '../../src/data/resultStories'
 
 for (const width of [375, 768, 1440]) {
-  test(`${width}px：開始、作答、返回修改、結果、分享 fallback 與重測`, async ({ page }) => {
+  test(`${width}px：開始、作答、返回修改、結果、分享 fallback 與重測`, async ({ page, browser }) => {
     await page.setViewportSize({ width, height: 900 })
     const errors: string[] = []
     page.on('dialog', async (dialog) => { errors.push(`Unexpected browser dialog: ${dialog.message()}`); await dialog.dismiss() })
@@ -75,15 +75,16 @@ for (const width of [375, 768, 1440]) {
     expect(new URL(shareUrl).hash).toBe(`#/result/v1/${result.resultId}`)
     expect(new URL(shareUrl).search).toBe('')
     await capture('share')
-    const visitor = await page.context().newPage()
+    const visitorContext = await browser.newContext()
+    const visitor = await visitorContext.newPage()
     await visitor.goto(shareUrl)
     await expect(visitor.getByRole('heading', { level: 1 })).toHaveText(type.name)
     await expect(visitor.locator('.shared-note')).toBeVisible()
     await expect(visitor.locator('.answer-reflection')).toHaveCount(0)
-    await expect(visitor.getByRole('heading', { name: '給你的最後一頁' })).toBeVisible()
+    await expect(visitor.getByRole('heading', { name: '角色手冊的最後一頁' })).toBeVisible()
     await visitor.reload()
     await expect(visitor.getByRole('heading', { level: 1 })).toHaveText(type.name)
-    await visitor.close()
+    await visitorContext.close()
     await page.getByRole('link', { name: '返回完整說明書' }).click()
     await expect(page.locator('.answer-reflection')).toBeVisible()
     await expect(page.locator('.shared-note')).toHaveCount(0)

@@ -1,7 +1,7 @@
 /* Illustrated edition: the same paper, ink and orange, with editorial layouts. */
 :root { --selected: #f6e8d8; --sheet: #fffcf6; }
 .illustration { display: block; position: relative; overflow: hidden; width: 240px; aspect-ratio: 1; flex-shrink: 0; isolation: isolate; }
-.illustration > img { position: absolute; width: 400%; height: 400%; max-width: none; left: var(--scene-x); top: var(--scene-y); pointer-events: none; }
+.illustration > img { position: absolute; width: var(--scene-size); height: var(--scene-size); max-width: none; left: var(--scene-x); top: var(--scene-y); pointer-events: none; }
 .site-shell { padding-top: 28px; }
 .brand { font-size: 23px; padding-bottom: 18px; }
 .ornament span { color: var(--accent); }

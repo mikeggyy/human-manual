@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react'
 import type { Dispatch } from 'react'
 import type { QuizAction, QuizState } from './quizReducer'
 
-export const QuizContext = createContext<{ state: QuizState; dispatch: Dispatch<QuizAction> } | null>(null)
+export const QuizContext = createContext<{ state: QuizState; dispatch: Dispatch<QuizAction>; storageMessage: string | null } | null>(null)
 
 export function useQuiz() {
   const value = useContext(QuizContext)

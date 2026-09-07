@@ -41,7 +41,7 @@ export function QuizPage() {
       </div>
       </div>
       {error && <p role="alert">{error}</p>}
-      <div className="quiz-navigation"><button type="button" className="button button-secondary" onClick={() => state.index ? dispatch({ type: 'previous' }) : navigate('/')}>上一題</button><button className="button button-primary" disabled={!state.answers[state.index]}>{isLast ? '翻開我的說明書' : '下一題'}</button></div>
+      <div className="quiz-navigation"><button type="button" className="button button-secondary" onClick={() => state.index ? dispatch({ type: 'previous' }) : navigate('/')}>{state.index ? '上一題' : '回到首頁'}</button><button className="button button-primary" disabled={!state.answers[state.index]}>{isLast ? '翻開我的說明書' : '下一題'}</button></div>
     </form>
   </div>
 }

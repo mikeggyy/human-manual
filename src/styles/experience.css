@@ -1,0 +1,41 @@
+/* Functional additions to the accepted paper-and-ink design. */
+.home-progress { color: var(--muted); font-size: 14px; line-height: 1.8; }
+.storage-notice { max-width: 840px; margin: 20px auto 0; border-left: 3px solid var(--accent); background: #f1e6d5; padding: 12px 16px; color: var(--ink); font-size: 14px; line-height: 1.8; }
+.manual-basics-title { margin: 32px 0 18px; font-size: 25px; line-height: 1.6; }
+.result-quick-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin: 26px 0 22px; }
+.result-quick-actions .text-link { margin: 0; padding: 12px 0; }
+.result-contents { justify-content: flex-start; gap: 0 28px; }
+.result-contents button { font-size: 15px; }
+.manual-basics-title, #reflection-title { scroll-margin-top: 24px; }
+.answer-reflection { margin-top: 40px; }
+.share-page { grid-template-rows: auto 1fr; align-items: start; column-gap: 48px; }
+.share-heading { align-self: start; padding-top: 30px; }
+.share-heading h1 { font-size: 30px; }
+.share-heading > p { text-wrap: pretty; }
+.share-context { color: var(--muted); font-size: 14px; line-height: 1.85; padding: 0 0 22px; }
+.share-buttons { display: grid; gap: 12px; }
+.share-feedback:empty { display: none; }
+.share-feedback .feedback { font-size: 14px; align-items: flex-start; }
+.share-feedback .error, .share-feedback .share-error { margin-top: 16px; color: var(--accent-dark); font-size: 14px; line-height: 1.85; }
+.share-feedback .feedback-error { color: var(--accent-dark); border-color: #c3a08a; }
+.export-preview { margin-top: 20px; border-top: 1px solid var(--rule); padding-top: 8px; }
+.export-preview summary { cursor: pointer; min-height: 48px; padding: 12px 0; color: var(--accent-dark); font-size: 15px; line-height: 1.65; }
+.export-preview img { display: block; width: 100%; height: auto; margin: 12px 0; border: 1px solid var(--rule); -webkit-touch-callout: default; }
+.export-preview p { font-size: 14px; color: var(--muted); margin: 12px 0; }
+.export-preview a { margin-top: 8px; }
+@media (max-width: 767px) {
+  .home-progress { text-align: center; font-size: 13px; }
+  .manual-basics-title { font-size: 23px; }
+  .result-quick-actions { display: grid; gap: 4px; }
+  .result-contents { gap: 0 22px; }
+  .result-contents button { font-size: 14px; }
+  .share-page { display: flex; flex-direction: column; gap: 0; }
+  .share-heading { order: 0; padding: 0 0 22px; margin: 0; width: 100%; }
+  .share-heading h1 { font-size: 27px; text-align: left; }
+  .share-heading > p { margin-top: 12px; font-size: 15px; text-align: left; }
+  .share-controls { order: 1; width: 100%; padding-top: 0; }
+  .share-page > .manual-card { order: 2; width: 100%; margin-top: 22px; }
+  .share-context { font-size: 13px; padding-bottom: 18px; }
+  .share-controls > .text-link { margin-bottom: 8px; }
+  .quiz-navigation { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+}
