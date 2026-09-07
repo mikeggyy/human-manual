@@ -34,7 +34,7 @@
 
 ## 實際畫面
 
-2026-09-08 的 production build，375px 手機尺寸截圖（桌面 Edge 模擬）。
+2026-09-08 公開網站的 375px 手機尺寸截圖（桌面 Edge 模擬）。
 
 <img src="docs/screenshots/home-mobile.png" alt="手機首頁：精裝書冊與開始按鈕" width="280" /> <img src="docs/screenshots/share-mobile.png" alt="手機分享頁：先顯示儲存與分享操作，再顯示角色卡" width="280" />
 

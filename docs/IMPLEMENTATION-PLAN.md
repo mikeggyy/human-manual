@@ -1,6 +1,6 @@
 # 實作計畫
 
-## 2026-09-08 UI／UX 與內容審視（本機完成，發布驗證中）
+## 2026-09-08 UI／UX 與內容審視（已發布並通過公開驗收）
 
 使用者已授權直接改善並發布至既有 mikeggyy/human-manual。沿用核准精裝手冊設計與原創插圖，這次是既有設計系統中的功能補齊與閱讀順序調整，不重做品牌或題庫。
 
@@ -24,14 +24,22 @@
 - 原生分享成功、取消、拒絕、不支援與點擊啟用條件使用受控 API 測試；內建瀏覽器另實際產生圖片、操作作答與重整接續。未向任何人實際傳送訊息。
 - 手機 320／375px、平板 768px、桌機 1440px，檢查主要操作、圖片載入、焦點、radio、reduced motion、無橫向溢出。獨立審查發現的首頁進度位置、ErrorBoundary 舊文案、錯誤訊息顏色已修正。
 - 詳細視覺比對見 [本輪審視](design/EXPERIENCE-REVIEW.md)；README 保存兩張實際手機尺寸截圖。沒有新增套件、外部服務、追蹤或授權檔；未修改原題庫、權重及 CI。
-- 待補：本輪遠端 CI／公開部署驗證紀錄。iOS Safari 實機、社群 App 內嵌瀏覽器、原生手機分享面板及 3 位一般使用者試玩仍未驗證。
+- iOS Safari 實機、社群 App 內嵌瀏覽器、原生手機分享面板及 3 位一般使用者試玩仍未驗證。
 
-更新：2026-09-07。使用者已接受 visual-direction-v1.png 的介面方向，並要求採用適合 AI 開發的技術；因此將原始 Vue 選型改成 React。現有試玩版已獲授權發布到 GitHub Pages；下方早期紀錄保留當時狀態，最新發布紀錄位於文末。
+### 本輪公開發布
+
+- 已發布應用程式 commit：`a884c6ab020f4101b81432ef5898cbf7f591fe3b`。GitHub Actions 的 build 與 deploy 均成功：[執行紀錄 34171204289](https://github.com/mikeggyy/human-manual/actions/runs/34171204289)。
+- CI 從 npm ci 開始，typecheck、lint、44 個單元測試、8 個核心測試、production build 與 27 個 Chromium 瀏覽器測試全部成功；CI 瀏覽器測試 44.4 秒。
+- [公開網站](https://mikeggyy.github.io/human-manual/) 首頁 HTTP 200，載入的 `/human-manual/assets/index-pNBbl8Ey.js` 與本機驗收建置一致。公開網址另外執行 27 個 Edge 瀏覽器測試，全數通過（約 1.1 分鐘）。
+- 公開版本另用實際流程產生六張介面截圖並下載 PNG，沒有 console／page error。內建瀏覽器目視確認新分享頁並點擊儲存，已呈現真正的圖片預覽與再次下載連結。
+- 後續僅提交驗收紀錄與公開截圖，不變更以上已發布應用程式；不將文件提交誤稱為另一次產品部署。
+
+更新：2026-09-08。使用者已接受 visual-direction-v1.png 的介面方向，並要求採用適合 AI 開發的技術；因此將原始 Vue 選型改成 React。現有試玩版已獲授權發布到 GitHub Pages；下方早期紀錄保留當時狀態，最新發布紀錄位於本文件開頭。
 
 ## 技術決策
 
 - React 19 + TypeScript + Vite；React Router HashRouter，支援靜態主機與專案子路徑。
-- React context + reducer + useQuiz hook 管理單次作答；計分為獨立純函式，資料沿用 core/quiz.v1.json。
+- React context + reducer + useQuiz hook 管理作答，2026-09-08 加入版本化本機保存；計分為獨立純函式，資料沿用 core/quiz.v1.json。
 - CSS variables 與原生 HTML 表單；不用 UI 套件改變已核准的手冊風格。
 - npm 單一 lockfile、ESLint、Vitest、Playwright；不增加後端或外部服務。
 - 2026-09-07 查核 npm 官方 registry：本機 Node 24.14.0 / npm 11.9.0。TypeScript 最新 7.0.2，但 typescript-eslint 8.69.0 要求 <6.1，因此使用相容穩定版 6.0.3。其他版本以 package.json 與 lockfile 為準。

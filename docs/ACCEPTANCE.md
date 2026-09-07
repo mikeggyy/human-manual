@@ -19,7 +19,7 @@
 - [x] 根路徑與專案子路徑 production build 的資源、favicon、分享 URL 都正確。
 
 ## C. 工程、視覺與公開展示
-- [ ] npm ci、npm run typecheck、npm run lint、npm run test:unit、npm run build 實際執行。
+- [x] 本機 typecheck／lint／單元測試／build 通過；本輪 GitHub CI 另從 npm ci 重新安装後通過全套檢查。
 - [x] 單元測試覆蓋計分、平手、6,561 路徑、非法答案、儲存／讀取驗證與 share URL。
 - [x] Playwright 覆蓋首頁→8 題→結果→重測，並測上一步修改、reload、未知分享連結及分享 fallback。
 - [x] 檢查 320px、375px、768px、1440px，無橫向溢出／遮擋，主要按鈕可觸及；手機完整結果卡可讀。
@@ -29,7 +29,7 @@
 - [x] README 用實際截圖與實際測試結果，列出限制及 AI 協作方式。
 - [x] 本輪程式與待提交檔案檢查未發現祕密、API token、姓名／聯絡資訊；沿用已記錄的原創素材與系統字體，未加入新外部素材。
 - [x] GitHub owner／repo／可見度與公開授權已確認；使用既有 mikeggyy/human-manual 公開 repo 與 Pages。
-- [ ] 發布後親自開啟實際 URL 驗證，不只以 Actions 綠燈宣稱網站正常。
+- [x] 公開 HTTPS 網址 27 個 Edge 測試通過，另以內建瀏覽器親自開啟並產生 PNG；詳見 IMPLEMENTATION-PLAN.md 的發布 commit 與 CI 連結。
 
 ## 人工試玩
 找 3 位一般使用者，不教他們介面怎麼操作，觀察能否自己完成並把結果傳給別人。
