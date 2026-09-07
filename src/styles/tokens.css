@@ -1,0 +1,13 @@
+:root {
+  --paper: #f8f5ee;
+  --paper-dark: #eeeadf;
+  --ink: #262620;
+  --muted: #65645d;
+  --accent: #c84717;
+  --accent-dark: #a83610;
+  --rule: #c7c5bb;
+  --rule-strong: #797a72;
+  --selected: #fbf8f1;
+  --heading-font: 'Noto Serif TC', 'Songti TC', 'PMingLiU', 'MingLiU', serif;
+  --body-font: 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+}

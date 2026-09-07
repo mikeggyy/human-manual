@@ -1,0 +1,60 @@
+TAP version 13
+# ALL_PATHS_RESULT_COUNTS {"low-battery-helper":1182,"social-heater":994,"inner-director":1169,"action-human":1219,"freeform-artist":975,"steady-keeper":1022}
+# TIE_CASES 1781
+# Subtest: 題庫結構與類型 ID 均有效
+ok 1 - 題庫結構與類型 ID 均有效
+  ---
+  duration_ms: 2.391887
+  type: 'test'
+  ...
+# Subtest: 相同答案穩定得到相同結果，不會修改輸入
+ok 2 - 相同答案穩定得到相同結果，不會修改輸入
+  ---
+  duration_ms: 3.102264
+  type: 'test'
+  ...
+# Subtest: 未完成、空值或多餘答案都被拒絕
+ok 3 - 未完成、空值或多餘答案都被拒絕
+  ---
+  duration_ms: 4.418403
+  type: 'test'
+  ...
+# Subtest: 跨題答案或未知 option ID 都被拒絕
+ok 4 - 跨題答案或未知 option ID 都被拒絕
+  ---
+  duration_ms: 0.50475
+  type: 'test'
+  ...
+# Subtest: 選擇依 option ID 判斷，不依選項畫面順序判斷
+ok 5 - 選擇依 option ID 判斷，不依選項畫面順序判斷
+  ---
+  duration_ms: 1.116678
+  type: 'test'
+  ...
+# Subtest: 損壞題庫、重複 ID、非法權重都被拒絕
+ok 6 - 損壞題庫、重複 ID、非法權重都被拒絕
+  ---
+  duration_ms: 1.119196
+  type: 'test'
+  ...
+# Subtest: 回頭改答案後重新計算，不會累加舊答案
+ok 7 - 回頭改答案後重新計算，不會累加舊答案
+  ---
+  duration_ms: 0.744749
+  type: 'test'
+  ...
+# Subtest: 全部 6,561 條答案路徑都可完成，六種結果皆可到達，包含平手情境
+ok 8 - 全部 6,561 條答案路徑都可完成，六種結果皆可到達，包含平手情境
+  ---
+  duration_ms: 507.218029
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 758.049953

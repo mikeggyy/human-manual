@@ -1,0 +1,328 @@
+{
+  "version": "1.0.0",
+  "title": "人類使用說明書",
+  "tagline": "出廠時沒附的那本，現在補給你。",
+  "disclaimer": "這是一份娛樂性測驗，不是心理評估或醫療診斷。結果是本次選擇的趣味描述，不代表你只能是某一種人。",
+  "types": [
+    {
+      "id": "low-battery-helper",
+      "name": "省電型熱心人",
+      "model": "HM-01",
+      "tagline": "不是不想見你，是我的電量還在排隊。",
+      "description": "你喜歡有品質的陪伴，不一定喜歡高密度的行程。熟人真的需要幫忙時，你往往會出現，只是回家後需要一段完全不用回話的時間。",
+      "startup": "一對一、熟悉的地方，再加上一個你真正有興趣的話題。",
+      "lowBattery": "開始用同一張貼圖，處理所有人生問題。",
+      "care": "邀你出門時，請一併提供預計回家時間。",
+      "warning": "不要把「我都可以」翻譯成「我可以連跑三攤」。",
+      "hiddenSkill": "安靜地記住朋友提過的小事，適時送上剛好的幫忙。",
+      "quote": "我沒有消失，我只是切到飛航模式。"
+    },
+    {
+      "id": "social-heater",
+      "name": "氣氛組暖爐",
+      "model": "HM-02",
+      "tagline": "只要你還在尷尬，我就還沒下班。",
+      "description": "你很容易察覺場面突然安靜，也常會主動接住沒有人回應的話。你不一定每天都想熱鬧，只是不太忍心讓任何人落單。",
+      "startup": "有人接話、有人一起笑，還有人願意說「走啊」。",
+      "lowBattery": "還在幫大家找話題，但自己的句子越來越短。",
+      "care": "偶爾也問問你想去哪裡，不要只說「你決定就好」。",
+      "warning": "會炒熱氣氛，不代表有義務主持每一場聚會。",
+      "hiddenSkill": "讓第一次見面的人，也能找到插得上話的位置。",
+      "quote": "場子可以冷，但不能冷在我朋友身上。"
+    },
+    {
+      "id": "inner-director",
+      "name": "腦內小劇場導演",
+      "model": "HM-03",
+      "tagline": "你只回了一個字，我已經拍完三種結局。",
+      "description": "一句普通的話，也可能讓你想到語氣、背景和沒說出口的部分。這讓你很有想像力，也讓某些本來十分簡單的事情，自動長出加長版。",
+      "startup": "留一點空白，讓你整理想法；有脈絡的說明，比叫你別想太多有用。",
+      "lowBattery": "對話還沒開始，腦中已經先開了檢討會。",
+      "care": "有話盡量說清楚，少用「沒事，你自己想」。",
+      "warning": "請勿把一個句點當成完整劇本的製作預算。",
+      "hiddenSkill": "把別人忽略的小細節，接成一個意想不到的故事。",
+      "quote": "事情只有一件，版本目前有七個。"
+    },
+    {
+      "id": "action-human",
+      "name": "人間行動派",
+      "model": "HM-04",
+      "tagline": "你們先討論，我順手把事情做好了。",
+      "description": "遇到一個不算太難的問題，你傾向先做點什麼。行動能讓你掌握狀況，但有時候朋友只是想被聽見，還沒打算立刻執行解決方案。",
+      "startup": "一個明確目標，再加上一件現在就能開始的小事。",
+      "lowBattery": "明明說要休息，卻又順手整理了半個房間。",
+      "care": "直接說需要什麼；也提醒你，不是每件事都需要立刻修好。",
+      "warning": "對方說「我好累」，不一定是在徵求效率改善提案。",
+      "hiddenSkill": "把大家討論很久的事情，拆成第一個真的能做的動作。",
+      "quote": "不要緊，我先試一下。"
+    },
+    {
+      "id": "freeform-artist",
+      "name": "隨興生活藝術家",
+      "model": "HM-05",
+      "tagline": "原訂行程很好，路邊那家看起來也不錯。",
+      "description": "你會替偶然留下位置，也很容易被新鮮的小事吸引。計畫不是沒有用，只是你不想為了遵守計畫，錯過眼前正在發生的好玩。",
+      "startup": "一點自由、一個新點子，以及不用精準到分鐘的下午。",
+      "lowBattery": "什麼都想做，於是先把待辦清單關掉。",
+      "care": "給你選擇空間，也把真的不能更動的事先講清楚。",
+      "warning": "「看心情」不是完整的集合地點。",
+      "hiddenSkill": "把不太順利的一天，拐成值得記住的小插曲。",
+      "quote": "我們本來不是要來這裡，但來都來了。"
+    },
+    {
+      "id": "steady-keeper",
+      "name": "安定感守護者",
+      "model": "HM-06",
+      "tagline": "你負責期待，我順手確認一下營業時間。",
+      "description": "你喜歡知道接下來會發生什麼，也常默默把容易被忘記的事補好。有人因此放心出門，但你的仔細不應該變成所有人都不用負責的理由。",
+      "startup": "資訊清楚、約定可靠，臨時變動時有人提前說一聲。",
+      "lowBattery": "備案越列越多，卻忘了替自己留一段休息。",
+      "care": "珍惜你的準備，也主動分擔一件小事。",
+      "warning": "不能因為你最可靠，就每次都讓你當總召。",
+      "hiddenSkill": "提前發現一個小缺口，讓大家少掉一場大混亂。",
+      "quote": "我不是想太多，我只是順便確認過了。"
+    }
+  ],
+  "questions": [
+    {
+      "id": "plans-cancelled",
+      "title": "朋友突然取消今晚的聚餐，你第一個念頭是？",
+      "options": [
+        {
+          "id": "plans-cancelled-1",
+          "label": "太好了，立刻換睡衣。",
+          "weights": {
+            "low-battery-helper": 3,
+            "steady-keeper": 1
+          }
+        },
+        {
+          "id": "plans-cancelled-2",
+          "label": "有點失落，看看還有誰想出門。",
+          "weights": {
+            "social-heater": 3,
+            "freeform-artist": 1
+          }
+        },
+        {
+          "id": "plans-cancelled-3",
+          "label": "人可以不來，但我還是要吃那家店。",
+          "weights": {
+            "action-human": 3,
+            "social-heater": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "weekend-trip",
+      "title": "週末小旅行交給你安排，你最可能先做什麼？",
+      "options": [
+        {
+          "id": "weekend-trip-1",
+          "label": "先看交通、營業時間，免得大家白跑。",
+          "weights": {
+            "steady-keeper": 3,
+            "action-human": 1
+          }
+        },
+        {
+          "id": "weekend-trip-2",
+          "label": "開始想像那裡的故事，連歌單都想好了。",
+          "weights": {
+            "inner-director": 3,
+            "low-battery-helper": 1
+          }
+        },
+        {
+          "id": "weekend-trip-3",
+          "label": "先選一個方向，路上看到喜歡的再停。",
+          "weights": {
+            "freeform-artist": 3,
+            "inner-director": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "friend-tired",
+      "title": "朋友傳來「今天真的好累」，你通常會？",
+      "options": [
+        {
+          "id": "friend-tired-1",
+          "label": "問他要不要幫忙，先處理一件最煩的事。",
+          "weights": {
+            "action-human": 3,
+            "social-heater": 1
+          }
+        },
+        {
+          "id": "friend-tired-2",
+          "label": "想想他今天可能經歷什麼，再好好回覆。",
+          "weights": {
+            "inner-director": 3,
+            "low-battery-helper": 1
+          }
+        },
+        {
+          "id": "friend-tired-3",
+          "label": "打個電話陪他講，也許一起吐槽一下。",
+          "weights": {
+            "social-heater": 3,
+            "freeform-artist": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "early-arrival",
+      "title": "你比約定時間早到半小時，會怎麼用這段時間？",
+      "options": [
+        {
+          "id": "early-arrival-1",
+          "label": "先確認集合點、洗手間和待會要走的路。",
+          "weights": {
+            "steady-keeper": 3,
+            "action-human": 1
+          }
+        },
+        {
+          "id": "early-arrival-2",
+          "label": "被旁邊的小店吸引，走進去看看。",
+          "weights": {
+            "freeform-artist": 3,
+            "inner-director": 1
+          }
+        },
+        {
+          "id": "early-arrival-3",
+          "label": "找個角落坐著，享受不用說話的空檔。",
+          "weights": {
+            "low-battery-helper": 3,
+            "steady-keeper": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "one-word-reply",
+      "title": "你傳了一長段訊息，對方只回「好」，你的反應是？",
+      "options": [
+        {
+          "id": "one-word-reply-1",
+          "label": "回頭看了兩遍：這個「好」是哪一種好？",
+          "weights": {
+            "inner-director": 3,
+            "low-battery-helper": 1
+          }
+        },
+        {
+          "id": "one-word-reply-2",
+          "label": "收到，可以結束這個對話回合了。",
+          "weights": {
+            "low-battery-helper": 3,
+            "steady-keeper": 1
+          }
+        },
+        {
+          "id": "one-word-reply-3",
+          "label": "想到另一件有趣的事，順手傳了一張梗圖。",
+          "weights": {
+            "freeform-artist": 3,
+            "inner-director": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "group-lost",
+      "title": "一群人出門迷路了，你比較像哪個角色？",
+      "options": [
+        {
+          "id": "group-lost-1",
+          "label": "一邊找路一邊講幹話，讓大家不要那麼煩。",
+          "weights": {
+            "social-heater": 3,
+            "freeform-artist": 1
+          }
+        },
+        {
+          "id": "group-lost-2",
+          "label": "打開地圖，先帶大家走出這個路口。",
+          "weights": {
+            "action-human": 3,
+            "social-heater": 1
+          }
+        },
+        {
+          "id": "group-lost-3",
+          "label": "確認地址和交通，找一條大家都走得動的路。",
+          "weights": {
+            "steady-keeper": 3,
+            "action-human": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "free-evening",
+      "title": "今晚突然多了一段完全自由的時間，你會？",
+      "options": [
+        {
+          "id": "free-evening-1",
+          "label": "看到什麼有趣就做什麼，今晚沒有固定劇本。",
+          "weights": {
+            "freeform-artist": 3,
+            "inner-director": 1
+          }
+        },
+        {
+          "id": "free-evening-2",
+          "label": "處理一件一直惦記的小事，再安心休息。",
+          "weights": {
+            "steady-keeper": 3,
+            "action-human": 1
+          }
+        },
+        {
+          "id": "free-evening-3",
+          "label": "問問朋友在幹嘛，說不定能一起吃點東西。",
+          "weights": {
+            "social-heater": 3,
+            "freeform-artist": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "ideal-gift",
+      "title": "朋友說要替你準備一個小驚喜，哪一種最對味？",
+      "options": [
+        {
+          "id": "ideal-gift-1",
+          "label": "熟悉的食物，加上一段不用安排活動的陪伴。",
+          "weights": {
+            "low-battery-helper": 3,
+            "steady-keeper": 1
+          }
+        },
+        {
+          "id": "ideal-gift-2",
+          "label": "一份藏著共同回憶、讓人慢慢讀懂的禮物。",
+          "weights": {
+            "inner-director": 3,
+            "low-battery-helper": 1
+          }
+        },
+        {
+          "id": "ideal-gift-3",
+          "label": "你一直想試的活動，直接一起去體驗。",
+          "weights": {
+            "action-human": 3,
+            "social-heater": 1
+          }
+        }
+      ]
+    }
+  ]
+}
