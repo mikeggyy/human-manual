@@ -22,6 +22,8 @@
 - 分享 URL 僅含版本和角色；未知版本／角色／路由可回首頁。
 - 原生 radio 與 fieldset、鍵盤焦點、375 / 768 / 1440px 響應式樣式。
 - 每題專屬情境插圖、六角色獨立造型，關於與錯誤頁也有插圖；分段進度、手機底部操作列與紙卡分享版面。
+- 精裝書主視覺、角色書籤、結果揭曉效果；六種完整生活場景、相處提醒、充電小練習與結尾。自己完成測驗後可看實際答案線索和完整作答回顧，分享頁不含個人答案。
+- 各頁／角色專屬分頁標題、共用品牌分享圖、導覽與頁尾、JavaScript 提示及異常回復入口。
 
 ## 尚未完成
 
@@ -61,7 +63,7 @@ npm run test:e2e
 
 Windows 也可使用已安裝的 Edge：`$env:PLAYWRIGHT_CHANNEL = 'msedge'`，然後執行 `npm run test:e2e`。測試網址可由 `E2E_BASE_URL` 指定；未指定時為 http://127.0.0.1:5180 。
 
-2026-09-07 本機已執行：npm ci、typecheck、lint、build、6 個單元測試、8 個參考核心測試、6 個 Playwright 測試；測試環境為 Windows / Node 24.14.0 / Edge Chromium，另在 Codex 內建瀏覽器檢查互動。最終實際結果及限制見實作計畫。
+2026-09-07 本機已執行：npm ci、typecheck、lint、build、9 個單元測試、8 個參考核心測試、7 個 Playwright 測試；測試環境為 Windows / Node 24.14.0 / Edge Chromium，另在 Codex 內建瀏覽器檢查互動。最終實際結果及限制見實作計畫。
 
 ## 架構與計分
 

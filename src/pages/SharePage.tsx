@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router'
+import { Link, useLocation, useParams } from 'react-router'
 import { findResult, routeVersion } from '../data/quiz'
 import { ManualCard } from '../components/ManualCard'
 import { ShareActions } from '../components/ShareActions'
@@ -6,6 +6,7 @@ import { NotFoundPage } from './NotFoundPage'
 
 export function SharePage() {
   const { version, resultId } = useParams()
+  const location = useLocation()
   const result = findResult(version, resultId)
   if (!result) return <NotFoundPage />
   return <section className="share-page">
@@ -13,7 +14,7 @@ export function SharePage() {
     <ManualCard result={result} compact />
     <div className="share-controls">
     <ShareActions key={result.id} resultId={result.id} />
-    <Link className="text-link" to={`/result/${routeVersion}/${result.id}`}>返回完整說明書</Link>
+    <Link className="text-link" to={`/result/${routeVersion}/${result.id}`} state={{ completed: Boolean(location.state?.completed) }}>返回完整說明書</Link>
     </div>
   </section>
 }

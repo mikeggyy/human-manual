@@ -2,6 +2,7 @@ import { Illustration } from './Illustration'
 import { illustrationFor } from '../data/illustrations'
 import type { ResultType } from '../domain/types'
 import { Icon } from './Icon'
+import type { ReactNode } from 'react'
 
 const sections = [
   { key: 'startup', label: '啟動方式', icon: 'plug' },
@@ -11,7 +12,7 @@ const sections = [
   { key: 'hiddenSkill', label: '隱藏技能', icon: 'star' },
 ] as const
 
-export function ManualCard({ result, compact = false }: { result: ResultType; compact?: boolean }) {
+export function ManualCard({ result, compact = false, afterIntro }: { result: ResultType; compact?: boolean; afterIntro?: ReactNode }) {
   const Heading = compact ? 'h2' : 'h1'
   return <article className={`manual-card${compact ? ' is-compact' : ''}`}>
     <div className="manual-intro">
@@ -23,6 +24,7 @@ export function ManualCard({ result, compact = false }: { result: ResultType; co
       <Illustration name={illustrationFor(result.id)} className="mascot" />
       {compact ? <blockquote>{result.quote}</blockquote> : <p className="description">{result.description}</p>}
     </div>
+    {afterIntro}
     <dl className="manual-sections">
       {(compact ? sections.slice(0, 3) : sections).map(({ key, label, icon }) => <div className="manual-section" key={key}>
         <div className="section-icon"><Icon name={icon} /></div>

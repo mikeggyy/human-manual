@@ -6,6 +6,10 @@ import { scoreQuiz } from '../domain/score'
 import { ManualCard } from '../components/ManualCard'
 import { useQuiz } from '../state/useQuiz'
 import { NotFoundPage } from './NotFoundPage'
+import { AnswerReflection } from '../components/AnswerReflection'
+import { ResultChapters } from '../components/ResultChapters'
+import { reflectAnswers } from '../domain/reflection'
+import { ResultContents } from '../components/ResultContents'
 
 export function ResultPage() {
   const { version, resultId } = useParams()
@@ -20,10 +24,11 @@ export function ResultPage() {
     setConfirmOpen(false)
     dispatch({ type: 'reset' }); navigate('/quiz')
   }
-  return <div className="result-page">
+  return <div className={`result-page${isOwnResult ? ' is-own-result' : ''}`}>
     {!isOwnResult && <p className="shared-note">這是一份被分享的角色介紹。你的說明書，等你自己翻開。</p>}
-    <ManualCard result={result} />
-    <div className="result-actions"><Link className="button button-primary" to={`/share/${routeVersion}/${result.id}`}>分享說明書</Link><button className="button button-secondary" onClick={() => state.answers.some(Boolean) ? setConfirmOpen(true) : restart()}>{isOwnResult ? '重新測驗' : '換我測測看'}</button></div>
+    <ManualCard result={result} afterIntro={<><ResultContents resultId={result.id} isOwnResult={isOwnResult} />{isOwnResult && <AnswerReflection answers={reflectAnswers(quiz, state.answers, result.id)} />}</>} />
+    <ResultChapters resultId={result.id} />
+    <div className="result-actions"><Link className="button button-primary" to={`/share/${routeVersion}/${result.id}`} state={{ completed: isOwnResult }}>分享說明書</Link><button className="button button-secondary" onClick={() => state.answers.some(Boolean) ? setConfirmOpen(true) : restart()}>{isOwnResult ? '重新測驗' : '換我測測看'}</button></div>
     <p className="disclaimer">{quiz.disclaimer}</p>
     <ConfirmDialog open={confirmOpen} title="重新翻開一頁？" description="清除這次作答，從第一題重新開始。" confirmLabel="重新測驗" onConfirm={restart} onCancel={() => setConfirmOpen(false)} />
   </div>

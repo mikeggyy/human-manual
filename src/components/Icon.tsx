@@ -1,4 +1,4 @@
-type IconName = 'arrow' | 'plug' | 'battery' | 'clock' | 'warning' | 'star' | 'check'
+type IconName = 'arrow' | 'plug' | 'battery' | 'clock' | 'warning' | 'star' | 'check' | 'book'
 const paths: Record<IconName, string> = {
   arrow: 'M9 5l7 7-7 7',
   plug: 'M8 2v6m8-6v6M6 8h12v3a6 6 0 0 1-6 6v5m0-5a6 6 0 0 1-6-6',
@@ -7,6 +7,7 @@ const paths: Record<IconName, string> = {
   warning: 'M12 3 2 21h20L12 3Zm0 6v5m0 3v1',
   star: 'm12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.2L5.8 21 7 14.2 2 9.3l6.9-1L12 2Z',
   check: 'm5 12 4 4L19 6',
+  book: 'M12 5c-3-2-6-2-10-1v15c4-1 7-1 10 1m0-15c3-2 6-2 10-1v15c-4-1-7-1-10 1V5ZM5 8h3m-3 4h3m8-4h3m-3 4h3',
 }
 export function Icon({ name }: { name: IconName }) {
   return <svg viewBox="0 0 24 24" fill={name === 'star' ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]} /></svg>
