@@ -1,6 +1,6 @@
 # 實作計畫
 
-更新：2026-09-07。使用者已接受 visual-direction-v1.png 的介面方向，並要求採用適合 AI 開發的技術；因此將原始 Vue 選型改成 React。這是本機專案，未建立遠端、未公開。
+更新：2026-09-07。使用者已接受 visual-direction-v1.png 的介面方向，並要求採用適合 AI 開發的技術；因此將原始 Vue 選型改成 React。現有試玩版已獲授權發布到 GitHub Pages；下方早期紀錄保留當時狀態，最新發布紀錄位於文末。
 
 ## 技術決策
 
@@ -116,3 +116,13 @@
 - 五個 Action 固定 SHA 已向各官方 GitHub repository 查核存在；尚無 GitHub Actions 執行紀錄。
 - README 與發布文件已更新；移除文件中的個人電腦絕對路徑。尚未初始化 Git、建立遠端、push 或啟用 Pages。帳號、名稱與公開原始碼／網站授權待使用者確認。
 - 上述子路徑驗證取代前文當時的「子路徑未驗證」狀態；公開 CI／Pages、iOS Safari、真人試玩與未實作功能仍未驗證。
+
+## 2026-09-07 公開試玩版發布完成
+
+- 使用者確認使用 mikeggyy/human-manual、公開程式碼並啟用 Pages；已建立公開 repository，main 已推送，HTTPS 已啟用。
+- 公開網站：https://mikeggyy.github.io/human-manual/ 。原始碼：https://github.com/mikeggyy/human-manual 。Repository 首頁欄位已指向試玩網址。
+- 首次發布程式碼 commit：5944e2edbf2964436e2db9068440ec8c3083ab74。GitHub Actions build 與 deploy 皆成功：https://github.com/mikeggyy/human-manual/actions/runs/34088185187 。後續文件紀錄提交不變更已驗收的程式碼。
+- CI 實際完成 npm ci、typecheck、lint、6 個單元測試、8 個核心測試、production build、6 個 Chromium 瀏覽器測試及 Pages artifact 發布。
+- 對公開 HTTPS 網址另執行 6 個 Edge 瀏覽器測試，全部通過：375／768／1440px 完整作答、回頭修改、六角色完整結果、分享訪客直達與重新整理、未知路由、重測確認與拖選行為。首頁 HTTP 200；內建瀏覽器已開啟公開網站並目視確認圖片和排版。
+- 未上傳 node_modules、dist、環境檔或測試暫存；未指定開源 LICENSE。Git 僅此專案使用 GitHub noreply 提交信箱。
+- 第二階段尚未實作的 localStorage、PNG 與原生分享，以及實機／真人驗收，仍維持未完成；此次交付為目前功能的公開試玩版。

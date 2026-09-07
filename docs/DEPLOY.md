@@ -1,5 +1,5 @@
 # GitHub 與公開網站：發布準備
-本文件與 deployment-templates/ 都是範本，尚未啟用、尚未在 GitHub 執行。
+實際發布使用 .github/workflows/deploy.yml；deployment-templates/ 保留為參考範本。
 第一版選擇 GitHub repository 保存原始碼，GitHub Pages 提供公開靜態網站。
 
 ## 為什麼第一版適合
@@ -8,10 +8,10 @@ GitHub Pages 是靜態託管服務；GitHub Free 可用公開 repository 啟用 
 這不表示無限流量，也不包含自行購買網域、未來資料庫或 AI 服務費用。
 網站訪問 IP 可能依 GitHub 的安全用途被記錄；不要宣稱包含主機在內完全不記錄資料。[1]
 
-## 尚未公開的狀態
-使用者已提出發布意願；本機 GitHub 登入狀態已確認，尚未建立 repo 或開放網站。
-準備完成後，確認 GitHub owner、repository 名稱、公開範圍和發布授權，再執行外部動作。
-建議 repository 名稱 human-manual；最終名稱以使用者確認和建立時的可用性為準。
+## 發布目標
+使用者於 2026-09-07 明確授權建立 mikeggyy/human-manual 公開 repository 並啟用 GitHub Pages。
+Repository 已建立：https://github.com/mikeggyy/human-manual 。Pages 使用 GitHub Actions，HTTPS 已啟用。
+後續更新 main 會自動檢查、建置及發布；應確認 Actions 成功並驗收公開網站，不能以 push 成功代替部署成功。
 目前可先公開為試玩版：可完整作答、查看六角色結果及分享連結；localStorage 保存、PNG 儲存、原生分享尚未實作。
 未選定授權前不要擅自加入 MIT／Apache 等 LICENSE。
 
@@ -53,4 +53,4 @@ hash route 是前端導航，不是各角色各自的 HTML 檔。[3]
 ## 範本的限制
 Workflow 中的五個 GitHub Action SHA 已於 2026-09-07 透過各官方 repository 的 GitHub API 查核存在。環境相容性仍須由實際 CI 驗證。
 範本先建置 production dist，再執行瀏覽器測試。CI 由 Playwright 管理 preview 的啟動與停止；測試基址及 Vite base 使用相同 repository 子路徑。
-目前沒有 GitHub 執行紀錄，因此本包不宣稱 CI/CD 已測過。
+實際 GitHub 執行與網站驗收紀錄見 docs/IMPLEMENTATION-PLAN.md；本機驗證與公開發布分別記錄。

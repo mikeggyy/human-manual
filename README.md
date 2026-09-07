@@ -6,6 +6,8 @@
 
 目前是**試玩版**，包含里程碑 1 的測驗與分享連結功能。不是心理評估或醫療診斷。
 
+[開啟線上試玩](https://mikeggyy.github.io/human-manual/) · [GitHub 原始碼](https://github.com/mikeggyy/human-manual) · [發布紀錄](https://github.com/mikeggyy/human-manual/actions)
+
 ## 技術與協作
 
 使用者確認手冊風格後，要求選用適合 AI 開發的方式；現採 React 19、TypeScript、Vite、React Router HashRouter、CSS variables。以元件、狀態、資料與計分分層，方便 AI 小步實作與測試。第一版沒有後端、LLM API、會員、追蹤或付費功能。
@@ -24,7 +26,7 @@
 
 第二階段：localStorage 保存與復原、PNG 儲存、原生分享與取消處理、完整錯誤降級。
 
-第三階段：最終展示截圖、Pages 設定與公開前驗收。iOS Safari 實機、App 內嵌瀏覽器、3 位一般使用者試玩、公開部署皆未驗證。圖片目前使用同一個全站電池角色，不是六套角色插畫。
+第三階段：最終展示截圖及完整產品驗收。試玩版 Pages 已公開，CI 與公開網址的 6 項瀏覽器測試通過；iOS Safari 實機、App 內嵌瀏覽器、3 位一般使用者試玩仍未驗證。圖片目前使用同一個全站電池角色，不是六套角色插畫。
 
 ## 本機執行
 
