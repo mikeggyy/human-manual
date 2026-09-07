@@ -24,6 +24,7 @@ for (const width of [375, 768, 1440]) {
     await expect(page.getByRole('heading', { level: 1 })).toContainText('出廠時沒附的那本')
     await capture('home')
     await page.getByRole('button', { name: '開始翻開我的說明書' }).click()
+    await expect(page.getByRole('img', { name: '坐在餐桌前，看著手機等待朋友的人' })).toBeVisible()
     await expect(page.getByRole('button', { name: '下一題' })).toBeDisabled()
     await expect(page.getByRole('heading', { level: 1 })).toBeFocused()
     await page.getByRole('radio').first().focus()
@@ -39,6 +40,9 @@ for (const width of [375, 768, 1440]) {
     await page.getByRole('button', { name: '下一題' }).click()
     for (let index = 1; index < 8; index++) {
       await expect(page.getByRole('heading', { level: 1 })).toHaveText(quiz.questions[index]!.title)
+      await expect(page.locator('.question-illustration')).toHaveAttribute('data-illustration', quiz.questions[index]!.id)
+      await expect(page.locator('.question-illustration img')).toHaveJSProperty('complete', true)
+      expect(await page.locator('.question-illustration img').evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0)
       await page.getByRole('radio').first().check()
       await page.getByRole('button', { name: index === 7 ? '翻開我的說明書' : '下一題', exact: true }).click()
     }
@@ -94,6 +98,7 @@ for (const width of [375, 768, 1440]) {
 test('所有角色有完整結果；未知版本或角色可以回首頁', async ({ page }) => {
   for (const result of quiz.types) {
     await page.goto(`./#/result/v1/${result.id}`)
+    await expect(page.locator('.mascot')).toHaveAttribute('data-illustration', result.id)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(result.name)
     await expect(page.getByText(result.warning, { exact: true })).toBeVisible()
     await expect(page.getByText(result.hiddenSkill, { exact: true })).toBeVisible()
@@ -103,5 +108,28 @@ test('所有角色有完整結果；未知版本或角色可以回首頁', async
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('這一頁，暫時找不到。')
     await page.getByRole('link', { name: '回到首頁', exact: true }).click()
     await expect(page.getByRole('button', { name: '開始翻開我的說明書' })).toBeVisible()
+  }
+})
+
+test('小螢幕插圖、操作列與減少動態效果', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 })
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('./')
+  await page.getByRole('button', { name: '開始翻開我的說明書' }).click()
+  await page.getByRole('radio').last().check()
+  const next = page.getByRole('button', { name: '下一題' })
+  await next.scrollIntoViewIfNeeded()
+  const bounds = (await next.boundingBox())!
+  expect(bounds.y + bounds.height).toBeLessThanOrEqual(640)
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320)
+  expect(await page.evaluate(() => document.getAnimations().length)).toBe(0)
+  await next.click()
+  await expect(page.getByRole('heading', { level: 1 })).toBeFocused()
+  await expect(page.getByRole('radio', { checked: true })).toHaveCount(0)
+  for (const [route, name] of [['about', '兩個朋友一起閱讀同一本說明書'], ['missing', '拿著放大鏡，在書本旁尋找散落書頁的探險家']]) {
+    await page.goto(`./#/${route}`)
+    await expect(page.getByRole('img', { name })).toBeVisible()
+    expect(await page.locator('.illustration img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320)
   }
 })

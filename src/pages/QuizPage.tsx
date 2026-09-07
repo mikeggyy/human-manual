@@ -5,6 +5,8 @@ import { scoreQuiz } from '../domain/score'
 import { useQuiz } from '../state/useQuiz'
 import { AnswerOption } from '../components/AnswerOption'
 import { QuizProgress } from '../components/QuizProgress'
+import { Illustration } from '../components/Illustration'
+import { illustrationFor } from '../data/illustrations'
 
 export function QuizPage() {
   const { state, dispatch } = useQuiz()
@@ -28,11 +30,15 @@ export function QuizPage() {
     <QuizProgress index={state.index} total={quiz.questions.length} />
     <form onSubmit={next}>
       <div className="question-sheet" key={question.id}>
-      <h1 ref={heading} id="question-title" tabIndex={-1}>{question.title}</h1>
+      <Illustration name={illustrationFor(question.id)} className="question-illustration" />
+      <div className="question-content">
+      <h1 ref={heading} id="question-title" tabIndex={-1}>{question.title.split(/(?<=，)/u).map((clause, index) => <span className="question-clause" key={index}>{clause}</span>)}</h1>
       <fieldset aria-labelledby="question-title" className="answer-options">
         <legend className="sr-only">請選擇一個答案</legend>
         {question.options.map((option) => <AnswerOption key={option.id} option={option} questionId={question.id} checked={state.answers[state.index] === option.id} onSelect={(optionId) => dispatch({ type: 'answer', optionId })} />)}
       </fieldset>
+      <p className="question-hint">選最像你的直覺，沒有標準答案。</p>
+      </div>
       </div>
       {error && <p role="alert">{error}</p>}
       <div className="quiz-navigation"><button type="button" className="button button-secondary" onClick={() => state.index ? dispatch({ type: 'previous' }) : navigate('/')}>上一題</button><button className="button button-primary" disabled={!state.answers[state.index]}>{isLast ? '翻開我的說明書' : '下一題'}</button></div>

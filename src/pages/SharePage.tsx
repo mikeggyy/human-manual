@@ -9,9 +9,11 @@ export function SharePage() {
   const result = findResult(version, resultId)
   if (!result) return <NotFoundPage />
   return <section className="share-page">
-    <h1 tabIndex={-1}>分享這份說明書</h1>
+    <header className="share-heading"><h1 tabIndex={-1}>分享這份說明書</h1><p>把相處的小線索，<br />分享給在乎你的人。</p></header>
     <ManualCard result={result} compact />
+    <div className="share-controls">
     <ShareActions key={result.id} resultId={result.id} />
     <Link className="text-link" to={`/result/${routeVersion}/${result.id}`}>返回完整說明書</Link>
+    </div>
   </section>
 }

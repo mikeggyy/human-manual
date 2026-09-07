@@ -1,4 +1,5 @@
-import mascot from '../assets/battery-mascot.png'
+import { Illustration } from './Illustration'
+import { illustrationFor } from '../data/illustrations'
 import type { ResultType } from '../domain/types'
 import { Icon } from './Icon'
 
@@ -14,10 +15,12 @@ export function ManualCard({ result, compact = false }: { result: ResultType; co
   const Heading = compact ? 'h2' : 'h1'
   return <article className={`manual-card${compact ? ' is-compact' : ''}`}>
     <div className="manual-intro">
+      <div className="manual-heading">
       <p className="model">{result.model}</p>
       <Heading tabIndex={-1}>{result.name}</Heading>
       {!compact && <p className="manual-tagline">{result.tagline}</p>}
-      <img className="mascot" src={mascot} alt="" width="1024" height="1536" draggable={false} />
+      </div>
+      <Illustration name={illustrationFor(result.id)} className="mascot" />
       {compact ? <blockquote>{result.quote}</blockquote> : <p className="description">{result.description}</p>}
     </div>
     <dl className="manual-sections">

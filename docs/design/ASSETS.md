@@ -12,3 +12,7 @@ Book: Extract and faithfully regenerate ONLY the illustrated standing instructio
 Mascot: Extract and faithfully regenerate ONLY the smiling battery-person mascot from the result panel of this approved UI concept as a standalone production image asset. Keep exact original design: a white/ivory cylindrical battery with black hand-drawn ink contours, a burnt orange stripe beneath top terminal, simple dot eyes and small smile, little bent arms with hands near hips, two tiny legs and shoes, small black lightning symbol on body. No book, no UI, no text. Full character centered, portrait composition, comfortable transparent margins, truly transparent background with alpha. Clean illustration with subtle pencil grain, polished and faithful to reference.
 
 其他圖示為程式原生 SVG（方向箭頭、插頭、電池、時鐘、注意、星號、勾選），依核准圖的功能與線條描繪。字型使用本機系統字型，沒有引入外部字型服務。
+
+## 2026-09-07 插畫版
+
+新增 `src/assets/illustration-atlas-v2.png`（1254×1254、保留透明背景），由內建 Image Gen 產生 4×4 插圖集：8 個作答情境、6 個獨立角色，以及關於／錯誤頁。首頁繼續使用書冊；原電池圖保留於原始素材，不再作為全部結果的共用圖。生成提示、設計規格及比對見 [ILLUSTRATED-EDITION.md](ILLUSTRATED-EDITION.md)。
