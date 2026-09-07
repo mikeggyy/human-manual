@@ -152,3 +152,5 @@
 - 新增各頁 title／描述、共用品牌 OG／Twitter 分享圖、導覽／頁尾、主圖載入與錯誤狀態、noscript、ErrorBoundary。保留原生 favicon；不宣稱角色專屬社群縮圖。
 - 本機 typecheck、lint、build、9 個單元測試通過；7 個完整瀏覽器測試通過，涵蓋 320／375／768／1440px、六角色延伸內容、真實選項回顧、訪客隔離、返回分享保留狀態、章節焦點與動態偏好。內建瀏覽器已實際檢查首頁與章節跳轉。
 - 概念／素材／版面比對詳見 docs/design/COLLECTIBLE-EDITION.md。localStorage、PNG 匯出、原生分享、iOS 實機、不同社群預覽呈現尚未驗證，未混列為本次完成。
+- 本版應用程式已發布：749c83d28c3b4447c34d2096b3ea6788884501ea。GitHub Actions 建置、全套測試與 Pages 部署成功：https://github.com/mikeggyy/human-manual/actions/runs/34110168660 。
+- 公開 HTTPS 網址另跑 7 個 Edge 瀏覽器流程測試，全部通過（31.9 秒）；首頁與共用分享圖均 HTTP 200。內建瀏覽器已目視確認新版首頁與分頁標題，保留公開網址供使用者試玩。社群平台的實際預覽快取仍未驗證。
