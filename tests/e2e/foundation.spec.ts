@@ -129,7 +129,7 @@ test('小螢幕插圖、操作列與減少動態效果', async ({ page }) => {
   for (const [route, name] of [['about', '兩個朋友一起閱讀同一本說明書'], ['missing', '拿著放大鏡，在書本旁尋找散落書頁的探險家']]) {
     await page.goto(`./#/${route}`)
     await expect(page.getByRole('img', { name })).toBeVisible()
-    expect(await page.locator('.illustration img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+    await expect.poll(() => page.locator('.illustration img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320)
   }
 })
