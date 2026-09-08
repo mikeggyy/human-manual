@@ -13,7 +13,7 @@
 
 ## 素材
 
-新增 [character-motion-v1.png](../../src/assets/character-motion-v1.png)，1024×1536、約 2.17MB，六列各四個姿勢。由內建 imagegen 產生，未使用 CLI／付費 API；保留原圖集與 PNG 匯出素材。
+新增 [character-motion-v1.png](../../src/assets/character-motion-v1.png)，1024×1536、約 2.17MB，六列各四個姿勢。由內建 imagegen 產生，未使用 CLI 或另接外部 API；保留原圖集與 PNG 匯出素材。
 
 初版背景意外畫出棋盤格，未採用；第二次只修正成白底。輸出為 RGB，並非真正 alpha；網頁使用 multiply 融合紙面，邊緣輕微淡出。各列有獨立裁切範圍，暖爐另外調整橫向圖格，避免相鄰盆栽滲入。調色盤眨眼格缺少花盆，因此該時段沿用完整休息姿勢，只播放揮筆動作。
 
