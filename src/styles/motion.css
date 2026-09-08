@@ -4,53 +4,93 @@
 .motion-toggle:hover:not(:disabled) { background: #e8e7d9; border-color: #9b9f84; }
 .motion-toggle:disabled { cursor: default; color: #696257; }
 .motion-toggle svg { flex-shrink: 0; }
-.character-window { display: block; visibility: hidden; position: absolute; left: 0; top: var(--sprite-window-offset); width: 100%; height: var(--sprite-window-height); overflow: hidden; mix-blend-mode: multiply; pointer-events: none; mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent); mask-composite: intersect; }
-.character-sprite { display: block; position: absolute; width: 400%; height: auto; max-width: none; left: 0; top: var(--sprite-top); transform: translateX(var(--frame-rest, -1.7578125%)); }
-.illustration[data-illustration="social-heater"] { --frame-rest: -1.171875%; --frame-blink: -26.5625%; --frame-gesture: -51.171875%; --frame-return: -75.5859375%; }
-/* Exclude the next frame's leaf tips from the empty space above the teacup. */
-.illustration[data-illustration="social-heater"] .character-window { clip-path: polygon(0 0, 100% 0, 100% 35%, 94% 35%, 94% 65%, 100% 65%, 100% 100%, 0 100%); }
-/* This drawing's blink pose omits its flowerpot; keep the complete resting pose
-   for that interval and animate the brush gesture instead. */
-.illustration[data-illustration="freeform-artist"] { --frame-blink: -1.7578125%; }
+.character-rig { display: block; visibility: hidden; position: absolute; inset: -1.020408%; width: 102.040816%; height: 102.040816%; overflow: hidden; pointer-events: none; }
+.character-part { transform-box: view-box; transform-origin: var(--part-origin); }
+.character-blink { opacity: 0; }
 .illustration[data-sprite-status="ready"]:not([data-motion="reduced"]) > .illustration-static { visibility: hidden; }
-.illustration[data-sprite-status="ready"]:not([data-motion="reduced"]) > .character-window { visibility: visible; }
-.character-shelf .illustration { background: var(--paper); }
+.illustration[data-sprite-status="ready"]:not([data-motion="reduced"]) > .character-rig { visibility: visible; }
 .book-float { transform-origin: 50% 85%; mix-blend-mode: multiply; }
 .book-glint { position: absolute; color: #bd6d38; font-size: 26px; line-height: 1; pointer-events: none; }
 .book-glint-one { top: 15%; left: 9%; }
 .book-glint-two { bottom: 21%; right: 4%; font-size: 17px; color: #758262; }
 .book-scene:not([data-status="ready"]) .book-glint { visibility: hidden; }
 
-/* A short pose sequence with a calm resting interval. Each transform selects a
-   complete frame; there is no sliding between neighbouring drawings. */
-@keyframes character-frames {
-  0%, 42%, 100% { transform: translateX(var(--frame-rest, -1.7578125%)); }
-  46% { transform: translateX(var(--frame-blink, -27.34375%)); }
-  50%, 63% { transform: translateX(var(--frame-gesture, -52.34375%)); }
-  68% { transform: translateX(var(--frame-return, -76.7578125%)); }
-  74% { transform: translateX(var(--frame-gesture, -52.34375%)); }
-  80% { transform: translateX(var(--frame-return, -76.7578125%)); }
-  87% { transform: translateX(var(--frame-rest, -1.7578125%)); }
+/* Each local gesture has anticipation, a small action and a quiet settling phase.
+   The base drawing and all stationary props stay in place throughout. */
+@keyframes quiet-wave {
+  0%, 24%, 64%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(1.5deg); }
+  40% { transform: rotate(-7deg); }
+  49% { transform: rotate(-3deg); }
+  55% { transform: rotate(-5deg); }
+}
+@keyframes warm-wave {
+  0%, 16%, 65%, 100% { transform: rotate(0deg); }
+  23% { transform: rotate(2deg); }
+  33% { transform: rotate(-9deg); }
+  41% { transform: rotate(-4deg); }
+  49% { transform: rotate(-8deg); }
+}
+@keyframes reel-roll {
+  0%, 20% { transform: rotate(0deg); }
+  76%, 100% { transform: rotate(360deg); }
+}
+@keyframes runner-pump {
+  0%, 18%, 66%, 100% { transform: rotate(0deg); }
+  29% { transform: rotate(-5deg); }
+  41% { transform: rotate(3deg); }
+  53% { transform: rotate(-3deg); }
+}
+@keyframes brush-sweep {
+  0%, 23%, 75%, 100% { transform: rotate(0deg); }
+  32% { transform: rotate(1.5deg); }
+  46% { transform: rotate(-5deg); }
+  61% { transform: rotate(2deg); }
+}
+@keyframes umbrella-sway {
+  0%, 100% { transform: rotate(0deg); }
+  28% { transform: rotate(-1.6deg); }
+  69% { transform: rotate(1.1deg); }
+}
+@keyframes steam-curl {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: .82; }
+  50% { transform: translate(1px, -4px) scale(1.035); opacity: .5; }
+}
+@keyframes character-blink {
+  0%, 71%, 73.5%, 100% { opacity: 0; }
+  71.5%, 73% { opacity: 1; }
 }
 @keyframes book-drift {
-  0%, 100% { transform: translateY(2px) rotate(-1deg); }
-  50% { transform: translateY(-9px) rotate(1deg); }
+  0%, 100% { transform: translateY(1px) rotate(-.22deg); }
+  50% { transform: translateY(-3px) rotate(.24deg); }
 }
 @keyframes book-glint {
-  0%, 100% { transform: translateY(3px) rotate(-12deg) scale(.8); opacity: .45; }
-  50% { transform: translateY(-5px) rotate(12deg) scale(1.08); opacity: .9; }
+  0%, 100% { transform: translateY(1px) rotate(-3deg) scale(.94); opacity: .55; }
+  50% { transform: translateY(-2px) rotate(3deg) scale(1.04); opacity: .72; }
 }
 @keyframes scene-breathe {
   0%, 100% { translate: 0 1px; }
-  50% { translate: 0 -3px; }
+  50% { translate: 0 -1px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .character-sprite { animation: character-frames var(--sprite-duration) steps(1, end) var(--sprite-delay) infinite; }
-  .book-float { animation: book-drift 5.6s ease-in-out infinite; }
-  .book-glint { animation: book-glint 3.8s ease-in-out infinite; }
-  .book-glint-two { animation-delay: -1.8s; animation-duration: 4.6s; }
-  .illustration:not([data-sprite-status]) > .illustration-static { animation: scene-breathe 7s ease-in-out infinite; }
+  .character-part { animation-duration: var(--part-cycle); animation-delay: var(--part-delay); animation-timing-function: cubic-bezier(.45, 0, .25, 1); animation-iteration-count: infinite; }
+  .motion-quiet-wave { animation-name: quiet-wave; }
+  .motion-warm-wave { animation-name: warm-wave; }
+  .motion-reel-roll { animation-name: reel-roll; }
+  .motion-runner-pump { animation-name: runner-pump; }
+  .motion-brush-sweep { animation-name: brush-sweep; }
+  .motion-umbrella-sway { animation-name: umbrella-sway; }
+  .motion-steam-curl { animation-name: steam-curl; animation-timing-function: ease-in-out; }
+  .character-blink { animation: character-blink var(--blink-cycle) linear var(--gesture-delay) infinite; }
+  .book-float { animation: book-drift 9.2s ease-in-out infinite; }
+  .book-glint { animation: book-glint 6.8s ease-in-out infinite; }
+  .book-glint-two { animation-delay: -2.4s; animation-duration: 7.6s; }
+  .illustration:not([data-sprite-status]) > .illustration-static { animation: scene-breathe 8.5s ease-in-out infinite; }
   .illustration[data-illustration="free-evening"] > .illustration-static { animation-duration: 10s; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .book-cover:hover { transform: translateY(-2px) rotate(-.25deg); }
+  .character-shelf .illustration:hover { transform: translateY(-3px); }
 }
 
 /* Pause actual frames and decorative loops, including offscreen illustrations. */
@@ -81,7 +121,7 @@
   .brand svg { width: 22px; height: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .character-window { display: none !important; }
+  .character-rig { display: none !important; }
   .illustration > .illustration-static { visibility: visible !important; }
   .book-glint { opacity: .55; }
 }
