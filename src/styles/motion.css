@@ -1,0 +1,87 @@
+/* Living storybook: separate the printed frame, entrance and illustration motion. */
+.header-tools { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.motion-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-width: 44px; min-height: 44px; padding: 8px 10px; border: 1px solid #cfc5b3; border-radius: 5px; background: #f0eadf; color: #5b5548; font: inherit; font-size: 13px; white-space: nowrap; cursor: pointer; }
+.motion-toggle:hover:not(:disabled) { background: #e8e7d9; border-color: #9b9f84; }
+.motion-toggle:disabled { cursor: default; color: #696257; }
+.motion-toggle svg { flex-shrink: 0; }
+.character-window { display: block; visibility: hidden; position: absolute; left: 0; top: var(--sprite-window-offset); width: 100%; height: var(--sprite-window-height); overflow: hidden; mix-blend-mode: multiply; pointer-events: none; mask-image: linear-gradient(to right, transparent, #000 2%, #000 98%, transparent), linear-gradient(to bottom, transparent, #000 2%, #000 98%, transparent); mask-composite: intersect; }
+.character-sprite { display: block; position: absolute; width: 400%; height: auto; max-width: none; left: 0; top: var(--sprite-top); transform: translateX(var(--frame-rest, -1.7578125%)); }
+.illustration[data-illustration="social-heater"] { --frame-rest: -1.171875%; --frame-blink: -26.5625%; --frame-gesture: -51.171875%; --frame-return: -75.5859375%; }
+/* Exclude the next frame's leaf tips from the empty space above the teacup. */
+.illustration[data-illustration="social-heater"] .character-window { clip-path: polygon(0 0, 100% 0, 100% 35%, 94% 35%, 94% 65%, 100% 65%, 100% 100%, 0 100%); }
+/* This drawing's blink pose omits its flowerpot; keep the complete resting pose
+   for that interval and animate the brush gesture instead. */
+.illustration[data-illustration="freeform-artist"] { --frame-blink: -1.7578125%; }
+.illustration[data-sprite-status="ready"]:not([data-motion="reduced"]) > .illustration-static { visibility: hidden; }
+.illustration[data-sprite-status="ready"]:not([data-motion="reduced"]) > .character-window { visibility: visible; }
+.character-shelf .illustration { background: var(--paper); }
+.book-float { transform-origin: 50% 85%; mix-blend-mode: multiply; }
+.book-glint { position: absolute; color: #bd6d38; font-size: 26px; line-height: 1; pointer-events: none; }
+.book-glint-one { top: 15%; left: 9%; }
+.book-glint-two { bottom: 21%; right: 4%; font-size: 17px; color: #758262; }
+.book-scene:not([data-status="ready"]) .book-glint { visibility: hidden; }
+
+/* A short pose sequence with a calm resting interval. Each transform selects a
+   complete frame; there is no sliding between neighbouring drawings. */
+@keyframes character-frames {
+  0%, 42%, 100% { transform: translateX(var(--frame-rest, -1.7578125%)); }
+  46% { transform: translateX(var(--frame-blink, -27.34375%)); }
+  50%, 63% { transform: translateX(var(--frame-gesture, -52.34375%)); }
+  68% { transform: translateX(var(--frame-return, -76.7578125%)); }
+  74% { transform: translateX(var(--frame-gesture, -52.34375%)); }
+  80% { transform: translateX(var(--frame-return, -76.7578125%)); }
+  87% { transform: translateX(var(--frame-rest, -1.7578125%)); }
+}
+@keyframes book-drift {
+  0%, 100% { transform: translateY(2px) rotate(-1deg); }
+  50% { transform: translateY(-9px) rotate(1deg); }
+}
+@keyframes book-glint {
+  0%, 100% { transform: translateY(3px) rotate(-12deg) scale(.8); opacity: .45; }
+  50% { transform: translateY(-5px) rotate(12deg) scale(1.08); opacity: .9; }
+}
+@keyframes scene-breathe {
+  0%, 100% { translate: 0 1px; }
+  50% { translate: 0 -3px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .character-sprite { animation: character-frames var(--sprite-duration) steps(1, end) var(--sprite-delay) infinite; }
+  .book-float { animation: book-drift 5.6s ease-in-out infinite; }
+  .book-glint { animation: book-glint 3.8s ease-in-out infinite; }
+  .book-glint-two { animation-delay: -1.8s; animation-duration: 4.6s; }
+  .illustration:not([data-sprite-status]) > .illustration-static { animation: scene-breathe 7s ease-in-out infinite; }
+  .illustration[data-illustration="free-evening"] > .illustration-static { animation-duration: 10s; }
+}
+
+/* Pause actual frames and decorative loops, including offscreen illustrations. */
+[data-motion]:not([data-motion="running"]),
+[data-motion]:not([data-motion="running"])::before,
+[data-motion]:not([data-motion="running"])::after,
+[data-motion]:not([data-motion="running"]) *,
+[data-motion]:not([data-motion="running"]) *::before,
+[data-motion]:not([data-motion="running"]) *::after { animation-play-state: paused !important; }
+
+/* A new page must remain readable when animations have been paused. Do not freeze
+   an entrance at its initial opacity; only ongoing illustration loops are frozen. */
+.site-shell:is([data-motion="paused"], [data-motion="hidden"]) :is(.home-copy h1, .home-subtitle, .home-actions, .book-cover, .question-sheet, .manual-intro, .manual-section, .mascot, .question-illustration, .about-illustration, .missing-illustration, .share-heading, .feedback, .confirm-dialog),
+.site-shell:is([data-motion="paused"], [data-motion="hidden"]) .confirm-dialog::backdrop { animation: none !important; }
+.site-shell:not([data-motion="running"]) * { transition: none !important; }
+.site-shell:not([data-motion="running"]) :is(.button, .answer-option, .book-cover, .character-shelf .illustration):hover { transform: none; }
+@media (max-width: 767px) {
+  .header-row { gap: 8px; }
+  .header-tools { gap: 8px; }
+  .header-about { padding-inline: 0; }
+  .motion-toggle { font-size: 12px; gap: 4px; padding-inline: 7px; }
+  .motion-toggle svg { width: 16px; height: 16px; }
+  .book-glint-one { font-size: 20px; top: 14%; left: 7%; }
+  .book-glint-two { font-size: 14px; }
+}
+@media (max-width: 380px) {
+  .brand { font-size: 16px; letter-spacing: 0; gap: 6px; }
+  .brand svg { width: 22px; height: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .character-window { display: none !important; }
+  .illustration > .illustration-static { visibility: visible !important; }
+  .book-glint { opacity: .55; }
+}

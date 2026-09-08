@@ -8,6 +8,7 @@ import { illustrationFor } from '../data/illustrations'
 import { quiz, routeVersion } from '../data/quiz'
 import { Icon } from '../components/Icon'
 import { scoreQuiz } from '../domain/score'
+import { useVisibleMotion } from '../state/useVisibleMotion'
 
 export function HomePage() {
   const { state, dispatch } = useQuiz()
@@ -17,6 +18,7 @@ export function HomePage() {
   const completedResult = answeredCount === quiz.questions.length ? scoreQuiz(quiz, state.answers).resultId : null
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [coverStatus, setCoverStatus] = useState<'loading' | 'ready' | 'failed'>('loading')
+  const { ref: bookRef, motion: bookMotion } = useVisibleMotion<HTMLDivElement>()
   function start() {
     setConfirmOpen(false)
     dispatch({ type: 'reset' })
@@ -24,7 +26,7 @@ export function HomePage() {
   }
   return <section className="home-page">
     <div className="home-copy"><h1 tabIndex={-1}>出廠時沒附的那本，<br className="desktop-break" /><span>現在補給你。</span></h1><p className="home-subtitle">8 個日常選擇，翻開你的使用說明書。</p></div>
-    <div className="book-scene" data-status={coverStatus}><img className="book-cover" src={book} alt="六個角色從橘色精裝的人類使用說明書中探出頭來" width="1254" height="1254" fetchPriority="high" draggable={false} onLoad={() => setCoverStatus('ready')} onError={() => setCoverStatus('failed')} />{coverStatus !== 'ready' && <p className="cover-status" role="status">{coverStatus === 'loading' ? '正在翻開書頁…' : '插圖暫時沒打開，先開始測驗吧。'}</p>}</div>
+    <div ref={bookRef} className="book-scene" data-status={coverStatus} data-motion={bookMotion}><div className="book-float"><img className="book-cover" src={book} alt="六個角色從橘色精裝的人類使用說明書中探出頭來" width="1254" height="1254" fetchPriority="high" draggable={false} onLoad={() => setCoverStatus('ready')} onError={() => setCoverStatus('failed')} /></div><span className="book-glint book-glint-one" aria-hidden="true">✦</span><span className="book-glint book-glint-two" aria-hidden="true">✦</span>{coverStatus !== 'ready' && <p className="cover-status" role="status">{coverStatus === 'loading' ? '正在翻開書頁…' : '插圖暫時沒打開，先開始測驗吧。'}</p>}</div>
     <div className="home-actions">
       {hasProgress && <p className="home-progress">{completedResult ? '你的說明書已經寫好，再翻開看看吧。' : `已答 ${answeredCount} / ${quiz.questions.length} 題，接著剛才那一頁繼續寫。`}</p>}
       {hasProgress && <button className="button button-primary" onClick={() => completedResult ? navigate(`/result/${routeVersion}/${completedResult}`, { state: { completed: true } }) : navigate('/quiz')}>{completedResult ? '查看我的說明書' : '繼續上次測驗'}</button>}
